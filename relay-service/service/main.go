@@ -62,8 +62,6 @@ func relayTest(agent *link.Agent) {
 			agent.WriteMsg(pb.ParseToBuff(cmd))
 			rta.operationList = nil
 
-			log.Trace("Relay")
-
 		case data, ok := <-agent.ReadChan():
 			if !ok {
 				loop = false
