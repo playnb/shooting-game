@@ -1,0 +1,41 @@
+syntax = "proto3";
+package pb;
+
+enum Index {
+    Index_Unknow = 0;
+    Index_UploadOperation = 1;
+    Index_RelayOperation = 2;
+}
+
+// 操作
+enum E_Operation {
+    Unknow = 0;
+    MoveJoyStick = 1;  //移动摇杆{Param1:0/1激活;Param2:x;Param3:y}
+    ShootJoyStick = 2; //射击摇杆
+}
+
+// 操作数据
+message T_Operation {
+    E_Operation Op = 1; //操作数
+    repeated double Param1 = 2;
+}
+
+// 角色操作数据
+message T_UserOperation {
+    uint64 UID = 1;
+    repeated T_Operation Operation = 2;
+}
+
+// C->S 上传操作
+message UploadOperation {
+    uint32 FrameIndex = 1;
+    repeated T_Operation Operation = 2;
+}
+
+// S->C 同步操作
+message RelayOperation {
+    uint32 FrameIndex = 1; //帧号
+    uint32 FrameStep = 2;  //每次步进几帧
+    uint32 FrameTime = 3;  //每帧时间
+    repeated T_UserOperation Users = 5;
+}
