@@ -31,7 +31,7 @@ type RelayTestAgent struct {
 func relayTest(agent *link.Agent) {
 	rta := &RelayTestAgent{}
 	rta.agent = agent
-	rta.frameTime = 20
+	rta.frameTime = 33
 	rta.frameStep = 5
 	rta.frameIndex = 0
 
